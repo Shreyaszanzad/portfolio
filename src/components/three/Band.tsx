@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import * as THREE from 'three'
@@ -124,7 +125,9 @@ export default function Band({
     }
   })
 
+  // eslint-disable-next-line react-hooks/immutability
   curve.curveType = 'chordal'
+  // eslint-disable-next-line react-hooks/immutability
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping
 
   return (
@@ -155,11 +158,11 @@ export default function Band({
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
             onPointerUp={(e) => {
-              ;(e.target as any).releasePointerCapture(e.pointerId)
+              ;(e.target as Element).releasePointerCapture(e.pointerId)
               drag(false)
             }}
             onPointerDown={(e) => {
-              ;(e.target as any).setPointerCapture(e.pointerId)
+              ;(e.target as Element).setPointerCapture(e.pointerId)
               drag(
                 new THREE.Vector3()
                   .copy(e.point)

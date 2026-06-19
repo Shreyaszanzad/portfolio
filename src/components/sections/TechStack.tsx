@@ -21,7 +21,7 @@ const BRAND: Record<string, string> = {
   GitHub:     '#ffffff',
 }
 
-type IconItem = { icon: React.ElementType; title: string }
+type IconItem = { icon: React.ComponentType<object>; title: string }
 
 function BrandIcon({ icon: Icon, title }: IconItem) {
   const [hovered, setHovered] = React.useState(false)

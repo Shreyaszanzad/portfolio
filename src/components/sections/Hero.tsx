@@ -48,7 +48,7 @@ export default function Hero() {
       if (!devRef.current || !lopRef.current) return
       const devRect = devRef.current.getBoundingClientRect()
       const lopRect = lopRef.current.getBoundingClientRect()
-      ;(window as any).__globeCenterX =
+      ;(window as Window & { __globeCenterX?: number }).__globeCenterX =
         (devRect.right + lopRect.left) / 2 / window.innerWidth
     }
     measure()

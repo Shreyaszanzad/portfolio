@@ -103,7 +103,7 @@ export default function ParticleGlobe() {
       // Globe sits between DEV and LOP — use the measured midpoint from Hero refs,
       // falling back to 50% when the measurement hasn't landed yet.
       const containerPx = Math.min(Math.max(260, window.innerWidth * 0.30), 500)
-      const cxFrac = (window as any).__globeCenterX ?? 0.5
+      const cxFrac = (window as Window & { __globeCenterX?: number }).__globeCenterX ?? 0.5
       const cx = W * cxFrac
       const cy = H * 0.5
       const R  = containerPx * 0.45 * dpr
