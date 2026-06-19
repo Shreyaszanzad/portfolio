@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/helvetica-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/helvetica.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Helvetica';
+  src: url('/fonts/helvetica-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* scroll-behavior handled by Lenis */
+}
+
+:root {
+  /* ── Color tokens ── */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.5);
+  --color-text-tertiary: #e0ff00;
+  --color-text-disabled: rgba(255, 255, 255, 0.2);
+  --color-text-inverse: oklab(0.999994 0.0000455678 0.0000200868 / 0.4);
+  --color-surface-base: #000000;
+  --color-surface-muted: #0a0a0a;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-focus: #e0ff00;
+
+  /* ── Typography tokens ── */
+  --font-family-display: 'Helvetica', Arial, sans-serif;
+  --font-family-serif:   var(--font-playfair), Georgia, serif;
+  --font-family-sans:    var(--font-inter), system-ui, sans-serif;
+  --font-family-primary: 'Helvetica', Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-weight-base: 400;
+  --font-line-height-base: 24px;
+
+  --font-size-xs:  10px;
+  --font-size-sm:  12px;
+  --font-size-md:  14px;
+  --font-size-lg:  16px;
+  --font-size-xl:  30px;
+  --font-size-2xl: 36px;
+  --font-size-3xl: 48px;
+  --font-size-4xl: 60px;
+
+  /* ── Spacing tokens ── */
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 25px;
+  --space-5: 40px;
+  --space-6: 52px;
+  --space-7: 60px;
+  --space-8: 64px;
+
+  /* ── Motion tokens ── */
+  --motion-instant: 150ms;
+  --motion-fast: 300ms;
+
+  /* ── Shadow tokens ── */
+  --shadow-1: rgba(0, 0, 0, 0.1) 0px 10px 15px 0px;
+}
+
+body {
+  background: var(--color-surface-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--font-line-height-base);
+  font-weight: var(--font-weight-base);
+  overflow-x: hidden;
+}
+
+/* ── WCAG 2.2 AA focus-visible ── */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Remove focus ring for pointer users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Open to Work badge ── */
+.badge-open-to-work {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             8px;
+  margin-top:      1.5rem;
+  padding:         7px 16px;
+  border-radius:   999px;
+  border:          1px solid rgba(224, 255, 0, 0.28);
+  background:      rgba(224, 255, 0, 0.06);
+  font-size:       10px;
+  letter-spacing:  0.18em;
+  text-transform:  uppercase;
+  color:           rgba(255, 255, 255, 0.8);
+  white-space:     nowrap;
+}
+
+.badge-open-to-work__dot {
+  position:   relative;
+  width:      8px;
+  height:     8px;
+  flex-shrink: 0;
+}
+
+.badge-open-to-work__ping {
+  position:   absolute;
+  inset:      0;
+  border-radius: 50%;
+  background: var(--color-text-tertiary);
+  opacity:    0.75;
+  animation:  ping 1.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.badge-open-to-work__core {
+  position:      relative;
+  width:         8px;
+  height:        8px;
+  border-radius: 50%;
+  background:    var(--color-text-tertiary);
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+/* ── Marquee animations (8 copies, scroll exactly 1 copy = -12.5%) ── */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-12.5%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-12.5%); }
+  to   { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left var(--duration, 30s) linear infinite;
+}
+.animate-marquee-right {
+  animation: marquee-right var(--duration, 30s) linear infinite;
+}
